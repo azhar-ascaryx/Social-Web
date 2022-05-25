@@ -41,13 +41,21 @@ router.delete("/:id", async (req, res) => {
 });
 
 //GET ALL USER
+// TODO: Remove password and updatedAt in response
 router.get("/", async (req, res) => {
   try {
     // const userId = req.query.userId;
     // const username = req.query.username;
-    const user = await User.find();
-    const { password, updatedAt, ...other } = user._doc;
-    res.status(200).json(other);
+    const users = await User.find();
+    // const modifiedUsers = users.map((password, updatedAt, ...other) => other)
+    // const { password, updatedAt, ...other } = users._doc;
+    // let modifiedUsers = []
+    // for (let user in users) {
+    //   const { password, updatedAt, ...other } = user
+    //   modifiedUsers.push(other)
+    // }
+    // console.log(modifiedUsers);
+    res.status(200).json(users);
   } catch (err) {
     res.status(500).json(err);
   }
